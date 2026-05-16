@@ -1,7 +1,7 @@
 * AerospaceWM-config  
 My simple aeerospace-config with custom dark color scheme.
 
-Clone config files in =$HOME/.config/aerospace=  directory that alacritty using as start point to load from.
+Clone config files in =$HOME/.config/aerospace=  directory that aerospace using as start point to load from.
 
 #+BEGIN_SRC bash
 git clone https://github.com/snackles/AerospaceWM-config.git "$HOME/.config/alacritty"
