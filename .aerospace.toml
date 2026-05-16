@@ -1,0 +1,124 @@
+# ============================================
+# ГЛОБАЛЬНЫЕ НАСТРОЙКИ
+# ============================================
+
+# Поведение при запуске
+start-at-login = true
+
+# BSP layout (как в bspwm) — tiles = бинарное разбиение
+ enable-normalization-flatten-containers = false
+ enable-normalization-opposite-orientation-for-nested-containers = false
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# ============================================
+# ОТОБРАЖЕНИЕ В БАРЕ (активный стол)
+# ============================================
+# AeroSpace показывает текущий стол в строке меню macOS
+# Дополнительно можно использовать sketchybar для более красивого отображения
+
+# Запуск SketchyBar после старта AeroSpace
+after-startup-command = ['exec-and-forget brew services start sketchybar']
+
+# Триггер события при смене рабочего стола
+exec-on-workspace-change = [
+    '/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+# # Эти команды обновляют статус при смене стола
+# exec-on-workspace-change = [
+#     '/bin/bash', '-c',
+#     'echo "Workspace: $AEROSPACE_FOCUSED_WORKSPACE"']
+
+# Отступы между окнами и краями экрана
+[gaps]
+inner.horizontal = 5
+inner.vertical = 5
+outer.left = 6
+outer.bottom = 6
+outer.top = 6
+outer.right = 6
+
+# ============================================
+# РАБОЧИЕ СТОЛЫ (10 штук)
+# ============================================
+# AeroSpace эмулирует виртуальные столы, не полагаясь на macOS Spaces [citation:5]
+
+# Для наглядности используем 10 столов: 1-9 + D (Desktop)
+[mode.main.binding]
+
+# Переключение на столы 1-9
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+alt-0 = 'workspace 0'   # 10-й стол
+
+# Перемещение окон на столы 1-9
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-0 = 'move-node-to-workspace 0'
+
+# Быстрый переход туда-обратно (как alt-tab в bspwm)
+alt-tab = 'workspace-back-and-forth'
+
+# ============================================
+# УПРАВЛЕНИЕ ОКНАМИ (как в bspwm: hjkl)
+# ============================================
+
+# Фокус на окно (как в vim/bspwm)
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# Перемещение окна
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# Изменение размера (на 50px)
+# alt-minus = 'resize smart -50'
+# alt-equal = 'resize smart +50'
+
+# Полноэкранный режим
+alt-shift-f = 'fullscreen'
+
+# Сбалансировать дерево окон (как balance в bspwm)
+alt-shift-b = 'balance-sizes'
+
+# Для точного контроля по осям
+alt-minus = 'resize width -50'
+alt-equal = 'resize width +50'
+ctrl-minus = 'resize height -50'
+ctrl-equal = 'resize height +50'
+
+# Переключение между floating и tiling режимами для окна
+alt-t = 'layout floating'
+alt-shift-t = 'layout tiles'
+
+alt-r = 'flatten-workspace-tree'
+
+alt-shift-r = 'exec-and-forget aerospace flatten-workspace-tree && aerospace flatten-workspace-tree'
+
+alt-down = 'split vertical'   # создает вертикальный преселект
+alt-right = 'split horizontal' # создает горизонтальный преселект
+
+# Альтернативные комбинации для join-with (чтобы не конфликтовать с move)
+alt-ctrl-h = 'join-with left'
+alt-ctrl-j = 'join-with down'
+alt-ctrl-k = 'join-with up'
+alt-ctrl-l = 'join-with right'
